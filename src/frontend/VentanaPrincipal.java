@@ -20,7 +20,7 @@ public class VentanaPrincipal extends JFrame {
         super("Administrador de Pruebas - Taxonomía de Bloom");
         setMinimumSize(new Dimension(800, 600));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1920, 1080);
+        setSize(500, 200);
         setLocationRelativeTo(null);
 
         // Layout vertical
@@ -46,14 +46,37 @@ public class VentanaPrincipal extends JFrame {
                 File archivo = fileChooser.getSelectedFile();
                 try {
                     List<backend.Pregunta> lista = ParserArchivo.cargar(archivo.getAbsolutePath());
+
+                    // Aquí validamos que la lista no esté vacía
+                    if (lista == null || lista.isEmpty()) {
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "El archivo no contiene preguntas válidas o está vacío.",
+                                "Error de contenido",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                        return;
+                    }
+
+                    // Solo creamos el gestor si la lista tiene preguntas
                     gestor = new GestorDePrueba(lista);
                     lblInfoPrueba.setText(lista.size() + " preguntas cargadas");
                     btnIniciar.setEnabled(true);
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this,
+                    JOptionPane.showMessageDialog(
+                            this,
                             "Error al cargar archivo:\n" + ex.getMessage(),
                             "Error de carga",
-                            JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                } catch (IllegalArgumentException ex) {
+                    // Esto captura también el caso donde el parser devolvió lista vacía o nula
+                    JOptionPane.showMessageDialog(
+                            this,
+                            ex.getMessage(),
+                            "Error al procesar preguntas",
+                            JOptionPane.WARNING_MESSAGE
+                    );
                 }
             }
         });
@@ -65,6 +88,5 @@ public class VentanaPrincipal extends JFrame {
             revalidate();
             pack();
         });
-        setVisible(true);
     }
 }

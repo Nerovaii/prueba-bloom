@@ -1,6 +1,12 @@
-// Main.java
+import javax.swing.SwingUtilities;
+import frontend.VentanaPrincipal;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Arranca la aplicación de prueba Bloom");
+        SwingUtilities.invokeLater(() -> {
+            VentanaPrincipal ventana = new VentanaPrincipal();
+            ventana.pack();
+            ventana.setVisible(true);
+        });
     }
 }

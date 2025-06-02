@@ -1,0 +1,7 @@
+¿Capital de Chile?;Santiago;Valparaíso;Concepción;Antofagasta;Santiago;multiple;Recordar
+Java es tipado dinámico;Verdadero;Falso;Falso;vf;Entender
+Multiplicar 3x3;6;9;12;9;multiple;Aplicar
+¿Sistema operativo orientado a objetos?;Linux;Windows;macOS;Windows;multiple;Analizar
+¿El Sol es una estrella?;Verdadero;Falso;Verdadero;vf;Entender
+¿Lenguaje compilado?;Java;Python;Ruby;Java;multiple;Entender
+¿2+2=4?;Verdadero;Falso;Verdadero;vf;Recordar
