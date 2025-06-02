@@ -8,6 +8,15 @@ import java.util.List;
 
 public class ParserArchivo {
 
+    /**
+     * Carga preguntas desde un archivo de texto separado por ';'.
+     * Formato esperado por línea:
+     *    enunciado;op1;op2;...;opN;respuestaCorrecta;tipo;nivelBloom
+     *
+     * @param rutaArchivo Ruta al archivo de preguntas
+     * @return Lista de objetos Pregunta
+     * @throws IOException Si ocurre error de lectura o formato inválido
+     */
     public static List<Pregunta> cargar(String rutaArchivo) throws IOException {
         List<Pregunta> lista = new ArrayList<>();
 
@@ -19,7 +28,7 @@ public class ParserArchivo {
                 numeroLinea++;
                 if (linea.trim().isEmpty()) continue; // Ignorar líneas en blanco
 
-                // Se separa por ';' (el -1 mantiene campos vacíos si los hubiera)
+                // Separar por ';' (el -1 mantiene campos vacíos si los hubiera)
                 String[] partes = linea.split(";", -1);
 
                 // Validar mínimo de campos: enunciado + al menos 2 opciones + respuesta + tipo + nivelBloom = 5

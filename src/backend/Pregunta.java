@@ -9,8 +9,6 @@ public class Pregunta {
     private String tipo;       // "multiple" o "vf"
     private String nivelBloom; // "Recordar", "Entender", "Aplicar", "Analizar", "Evaluar", "Crear"
 
-    // Se ordena la pregunta
-
     public Pregunta(String enunciado, String[] opciones, String respuestaCorrecta, String tipo, String nivelBloom) {
         this.enunciado = enunciado;
         this.opciones = opciones;

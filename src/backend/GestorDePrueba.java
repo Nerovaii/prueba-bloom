@@ -7,7 +7,7 @@ import java.util.Map;
 public class GestorDePrueba {
     private List<Pregunta> preguntas;
     private int preguntaActual; // Índice de la pregunta actual en la lista
-    private Map<Integer, String> respuestasUsuario; // Key = índice de pregunta; Value = la respuesta elegida
+    private Map<Integer, String> respuestasUsuario; // Key = índice de pregunta; Value = respuesta elegida
 
     public GestorDePrueba(List<Pregunta> preguntas) {
         if (preguntas == null || preguntas.isEmpty()) {
@@ -23,7 +23,22 @@ public class GestorDePrueba {
         return preguntas.get(preguntaActual);
     }
 
-    /** Se avanza al siguiente ítem, si no estamos en la última pregunta */
+    /** Devuelve el índice de la pregunta actual */
+    public int getPreguntaActualIndex() {
+        return preguntaActual;
+    }
+
+    /** Devuelve true si actualmente estamos en la primera pregunta */
+    public boolean estaPrimeraPregunta() {
+        return preguntaActual == 0;
+    }
+
+    /** Devuelve true si actualmente estamos en la última pregunta */
+    public boolean estaUltimaPregunta() {
+        return preguntaActual == preguntas.size() - 1;
+    }
+
+    /** Avanza al siguiente ítem, si no estamos en la última pregunta */
     public void avanzar() {
         if (preguntaActual < preguntas.size() - 1) {
             preguntaActual++;
@@ -45,14 +60,14 @@ public class GestorDePrueba {
         respuestasUsuario.put(indicePregunta, respuestaElegida);
     }
 
-    /** Devuelve true si actualmente estamos en la última pregunta */
-    public boolean estaUltimaPregunta() {
-        return preguntaActual == preguntas.size() - 1;
+    /** Retorna true si el usuario ya respondió la pregunta de índice dado */
+    public boolean tieneRespuestaPara(int indicePregunta) {
+        return respuestasUsuario.containsKey(indicePregunta);
     }
 
-    /** Devuelve true si actualmente estamos en la primera pregunta */
-    public boolean estaPrimeraPregunta() {
-        return preguntaActual == 0;
+    /** Devuelve la respuesta que el usuario dio para la pregunta (o null si no existe) */
+    public String getRespuestaPara(int indicePregunta) {
+        return respuestasUsuario.get(indicePregunta);
     }
 
     /** Devuelve el número total de preguntas */
@@ -60,7 +75,15 @@ public class GestorDePrueba {
         return preguntas.size();
     }
 
+    /** Resetea el índice de pregunta para que apunte a la primera */
+    public void reiniciar() {
+        this.preguntaActual = 0;
+    }
 
+    /**
+     * Calcula el porcentaje de respuestas correctas por nivel Bloom.
+     * @return Mapa donde la clave es el nivel Bloom y el valor es el porcentaje (0–100)
+     */
     public Map<String, Integer> calcularPorcentajePorNivelBloom() {
         Map<String, Integer> aciertosPorNivel = new HashMap<>();
         Map<String, Integer> totalPorNivel   = new HashMap<>();
@@ -97,7 +120,10 @@ public class GestorDePrueba {
         return porcentajePorNivel;
     }
 
-
+    /**
+     * Calcula el porcentaje de respuestas correctas por tipo de pregunta ("multiple" o "vf").
+     * @return Mapa donde la clave es el tipo y el valor es el porcentaje (0–100)
+     */
     public Map<String, Integer> calcularPorcentajePorTipo() {
         Map<String, Integer> aciertosPorTipo = new HashMap<>();
         Map<String, Integer> totalPorTipo   = new HashMap<>();
