@@ -19,7 +19,7 @@ public class ParserArchivo {
                 numeroLinea++;
                 if (linea.trim().isEmpty()) continue; // Ignorar líneas en blanco
 
-                // Separar por ';' (el -1 mantiene campos vacíos si los hubiera)
+                // Se separa por ';' (el -1 mantiene campos vacíos si los hubiera)
                 String[] partes = linea.split(";", -1);
 
                 // Validar mínimo de campos: enunciado + al menos 2 opciones + respuesta + tipo + nivelBloom = 5

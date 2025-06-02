@@ -23,7 +23,7 @@ public class GestorDePrueba {
         return preguntas.get(preguntaActual);
     }
 
-    /** Avanza al siguiente ítem, si no estamos en la última pregunta */
+    /** Se avanza al siguiente ítem, si no estamos en la última pregunta */
     public void avanzar() {
         if (preguntaActual < preguntas.size() - 1) {
             preguntaActual++;
