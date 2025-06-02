@@ -65,5 +65,6 @@ public class VentanaPrincipal extends JFrame {
             revalidate();
             pack();
         });
+        setVisible(true);
     }
 }
