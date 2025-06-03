@@ -18,6 +18,12 @@ Aplicación Java Swing para administrar pruebas basadas en la Taxonomía de Bloo
 
 - **Main.java**: punto de entrada que lanza `VentanaPrincipal` sobre el hilo de Swing.
 
+## Formato y dispocicion de archivos
+
+- los archivos tienen que tener el siguiente formato
+
+  ```
+  enunciado;opción1;opción2;...;opciónN;respuestaCorrecta;tipo;nivelBloom
 ---
 
 ## Cómo compilar
@@ -31,3 +37,7 @@ Aplicación Java Swing para administrar pruebas basadas en la Taxonomía de Bloo
    ```bash
    javac backend/*.java frontend/*.java Main.java
    java Main
+
+---
+https://www.youtube.com/watch?v=OuWY6ZVQJ8M
+---
